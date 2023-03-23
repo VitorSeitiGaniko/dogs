@@ -4,6 +4,7 @@ import { StyledTitle, StyledContainer } from "../../UI/Variables";
 import { ReactComponent as Dogs } from "../../Assets/dogs.svg";
 import { ReactComponent as User } from "../../Assets/usuario.svg";
 import styled from "styled-components";
+import { UserContext } from "../../Context/UserContext";
 
 const StyledHeader = styled.header`
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
@@ -38,6 +39,8 @@ const StyledLoginLogo = styled.span`
 `;
 
 const Header = () => {
+	const context = React.useContext(UserContext);
+
 	return (
 		<StyledHeader>
 			<StyledContainer>
@@ -49,12 +52,18 @@ const Header = () => {
 					</NavLink>
 
 					<StyledLogin>
-						<NavLink to="login">
-							Login / Criar
-							<StyledLoginLogo>
-								<User />
-							</StyledLoginLogo>
-						</NavLink>
+						{!context.data && (
+							<NavLink to="login">
+								Login / Criar
+								<StyledLoginLogo>
+									<User />
+								</StyledLoginLogo>
+							</NavLink>
+						)}
+						{context.data && context.data.username && (
+							<NavLink to="login">Meus dados</NavLink>
+						)}
+						<button onClick={context.userLogout}>Sair da conta</button>
 					</StyledLogin>
 				</StyledNav>
 			</StyledContainer>

@@ -6,20 +6,23 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
+import { UserStorage } from "./Context/UserContext";
 
 function App() {
 	return (
 		<div>
 			<BrowserRouter>
-				<Header />
+				<UserStorage>
+					<Header />
 
-				<Routes>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="about" element={<About />}></Route>
-					<Route path="login/*" element={<Login />}></Route>
-				</Routes>
+					<Routes>
+						<Route path="/" element={<Home />}></Route>
+						<Route path="about" element={<About />}></Route>
+						<Route path="login/*" element={<Login />}></Route>
+					</Routes>
 
-				<Footer />
+					<Footer />
+				</UserStorage>
 			</BrowserRouter>
 		</div>
 	);
