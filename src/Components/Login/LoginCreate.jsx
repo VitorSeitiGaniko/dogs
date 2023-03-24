@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { POST_USER } from "../../api";
+import { UserContext } from "../../Context/UserContext";
 import { StyledButton, StyledInput, StyledLabel } from "../../UI/Variables";
 
 const LoginCreate = () => {
 	const [username, setUsername] = useState();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+	const { userLogin } = React.useContext(UserContext);
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
-		const { url, options } = POST_USER();
+		const { url, options } = POST_USER({ username, password, email });
+		const response = await fetch(url, options);
+		console.log(response);
+		if (!response.ok) return null;
+		userLogin(username, password);
 	}
 
 	return (

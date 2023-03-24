@@ -69,7 +69,7 @@ const LoginForm = () => {
 				<div>
 					<h2>Cadastra-se</h2>
 					<p>Ainda não possui conta? Cadastre-se no site</p>
-					<Link to="/login/criar">Cadastrar</Link>
+					<Link to="/login/create">Cadastrar</Link>
 				</div>
 			</section>
 		</div>
