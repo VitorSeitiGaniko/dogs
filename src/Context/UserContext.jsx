@@ -71,7 +71,8 @@ export const UserStorage = ({ children }) => {
 			console.log("response  --> ", response);
 
 			if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-			const { token } = await response.json();
+			const { token, message } = await response.json();
+			console.log(message);
 
 			localStorage.setItem("TOKEN", token);
 			await getUser(token);

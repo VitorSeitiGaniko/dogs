@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { POST_USER } from "../../api";
 import { UserContext } from "../../Context/UserContext";
+import Error from "../../Helper/Error";
 import { StyledButton, StyledInput, StyledLabel } from "../../UI/Variables";
 
 const LoginCreate = () => {
@@ -8,14 +9,22 @@ const LoginCreate = () => {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const { userLogin } = React.useContext(UserContext);
+	const [error, setError] = React.useState()
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 		const { url, options } = POST_USER({ username, password, email });
 		const response = await fetch(url, options);
 		console.log(response);
-		if (!response.ok) return null;
-		userLogin(username, password);
+		const responseBody = await response.json();
+		console.log(responseBody);
+
+		if (!response.ok){
+			setError(responseBody.message)
+		}else{
+			userLogin(username, password);
+		}
+		
 	}
 
 	return (
@@ -47,6 +56,7 @@ const LoginCreate = () => {
 					onChange={({ target }) => setPassword(target.value)}
 				/>
 				<button>Cadastrar</button>
+				<Error error={error}/>
 			</form>
 		</section>
 	);
