@@ -63,7 +63,6 @@ const Header = () => {
 						{context.data && context.data.username && (
 							<NavLink to="login">Meus dados</NavLink>
 						)}
-						<button onClick={context.userLogout}>Sair da conta</button>
 					</StyledLogin>
 				</StyledNav>
 			</StyledContainer>
