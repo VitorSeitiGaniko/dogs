@@ -2,7 +2,7 @@ import React from "react";
 import { GET_PHOTOS } from "../../api";
 import FeedPhotoItem from "./FeedPhotoItem";
 
-const FeedPhoto = () => {
+const FeedPhoto = ({ setModalPhoto }) => {
 	const [data, setData] = React.useState();
 
 	React.useEffect(() => {
@@ -20,9 +20,8 @@ const FeedPhoto = () => {
 
 	return (
 		<div>
-			{data.map((photo) => (
-				<FeedPhotoItem photo={photo} />
-			))}
+			{data &&
+				data.map((photo) => <FeedPhotoItem photo={photo} setModalPhoto={setModalPhoto} />)}
 		</div>
 	);
 };
