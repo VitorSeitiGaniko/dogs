@@ -82,3 +82,19 @@ export function POST_PHOTO(formData, token) {
 		},
 	};
 }
+
+export function POST_COMMENT(id, body){
+	return {
+		url: `${API_URL}/api/comment/${id}`,
+		options: {
+			method: "POST",
+			
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + window.localStorage.getItem("TOKEN"),
+			},
+			
+			body: JSON.stringify(body),
+		}
+	}	
+}
