@@ -3,6 +3,7 @@ import FeedPhotoItem from "./FeedPhotoItem";
 import { GET_PHOTO } from "../../api";
 import FeedModalComments from "./FeedModalComments";
 import { UserContext } from "../../Context/UserContext";
+import FeedPhotoDelete from "./FeedPhotoDelete";
 
 const FeedModal = ({ photo }) => {
 	const [data, setData] = React.useState();
@@ -26,13 +27,15 @@ const FeedModal = ({ photo }) => {
 			{data && <p>{data.photo.author}</p>}
 			{data && <p>{data.photo.title}</p>}
 			{data && <p>{data.photo.idade}</p>}
+			{data && <FeedPhotoDelete id={data.photo.id} />}
 			{/* {data && 
 				<ul>
 				{data.comments.map((comment) => <li><strong>{comment.comment_content}</strong></li>)}				
 			</ul>} */}
-			
-			{context.isLogged && data && <FeedModalComments id={data.photo.id} comments={data.comments}/>}
-			
+
+			{context.isLogged && data && (
+				<FeedModalComments id={data.photo.id} comments={data.comments} />
+			)}
 		</div>
 
 		// <div>{data && <img src={data.photo.src} alt={data.photo.title} />}</div>
