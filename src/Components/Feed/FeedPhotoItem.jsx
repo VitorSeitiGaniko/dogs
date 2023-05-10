@@ -8,7 +8,7 @@ const FeedPhotoItem = ({ photo, setModalPhoto }) => {
 
 	return (
 		<div onClick={handleClick}>
-			<img src={photo.src} alt="" />
+			<img style={{height: 500}} src={photo.src} alt="" />
 		</div>
 	);
 };
